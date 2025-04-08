@@ -13,10 +13,16 @@ app.get('/', function(request, response) {
 });
 
 // GitHub webhook route
-app.post('/github-webhook/', function(request, response) {
+/*app.post('/github-webhook/', function(request, response) {
   console.log('🚀 Webhook received:', request.body); // For debugging
   response.sendStatus(200); // Respond to GitHub
+});*/
+app.post('/github-webhook/', function(request, response) {
+  console.log('🚀 Headers:', request.headers);
+  console.log('🚀 Body:', JSON.stringify(request.body, null, 2));
+  response.sendStatus(200);
 });
+
 
 // Start server
 app.listen(app.get('port'), function() {
