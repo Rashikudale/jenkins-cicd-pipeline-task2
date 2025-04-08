@@ -1,13 +1,24 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
-app.set('port', (process.env.PORT || 5000))
-app.use(express.static(__dirname + '/public'))
+app.set('port', (process.env.PORT || 5000));
+app.use(express.static(__dirname + '/public'));
 
+// Needed to parse JSON body from GitHub
+app.use(express.json());
+
+// Home route
 app.get('/', function(request, response) {
-  response.send('Hello World!')
-})
+  response.send('Hello World!');
+});
 
+// GitHub webhook route
+app.post('/github-webhook/', function(request, response) {
+  console.log('🚀 Webhook received:', request.body); // For debugging
+  response.sendStatus(200); // Respond to GitHub
+});
+
+// Start server
 app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
+  console.log("Node app is running at localhost:" + app.get('port'));
+});
