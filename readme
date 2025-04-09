@@ -1,6 +1,0 @@
-First I have created Repository named: nodejs-demo-app
-Then setup node.js in package.json file
-created a docker file
-pushed docker image to Docker hub
-then created a file named main.yml in actions workflow
-then committed and pushed it
